@@ -35,6 +35,19 @@ jobs:
         registry: docker.io
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
+    # Add this new step for SSH and Docker update
+    - name: SSH and Update Docker Container
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        password: ${{ secrets.PASSWORD }}
+        script: |
+          docker pull irenva101/intens2022:master-6b9420f
+          docker stop naughty_feynman || true
+          docker rm naughty_feynman || true
+          docker run -d --name naughty_feynman irenva101/intens2022:master-6b9420f
+
 
 
    
