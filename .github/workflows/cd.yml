@@ -39,9 +39,9 @@ jobs:
     - name: SSH and Update Docker Container
       uses: appleboy/ssh-action@master
       with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
-        password: ${{ secrets.PASSWORD }}
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USERNAME }}
+        password: ${{ secrets.SSH_KEY }}
         script: |
           docker pull irenva101/intens2022:master-6b9420f
           docker stop naughty_feynman || true
